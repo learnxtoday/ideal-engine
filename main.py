@@ -19,13 +19,13 @@ def display():
         sleep(1)
 
         # Print the names of the columns.
-        print ("{:<10} {:<10}".format('NAME', 'DESCRIPTION'))
+        print ("{:<10} {:<7}".format('NAME', 'DESCRIPTION'))
 
         # print each data item. 
         for key, value in dataDict.items():
             name, desc = key, value
             desc = desc.replace("\n", "\n\t   ")
-            print ("{:<10} {:<7}".format(name, desc))
+            print ("{:<10} {:<10}".format(name, desc))
 
 
     else:
