@@ -2,16 +2,26 @@ import sys
 import argparse
 from time import sleep
 import json
-from os import path
+from os import path, chdir, getcwd
 
+curr_dir = getcwd()
+data_path= 'data'
+store = path.join(curr_dir, data_path)
+
+def version():
+    print("Version 1.0.1")
 
 def getData():
+    global store
+    chdir(store)
     with open('data.txt', 'r') as readFile:
         data = json.load(readFile)
 
     return data
 
 def display():
+    global store
+    chdir(store)
     if(path.exists("data.txt")):
 
         dataDict = getData()
@@ -19,7 +29,7 @@ def display():
         sleep(1)
 
         # Print the names of the columns.
-        print ("{:<10} {:<7}".format('NAME', 'DESCRIPTION'))
+        print ("{:<10} {:<10}".format('NAME', 'DESCRIPTION'))
 
         # print each data item. 
         for key, value in dataDict.items():
@@ -33,6 +43,7 @@ def display():
 
 def newEntry():
 
+    global store
     name = input("Enter project name: ")
     detail = input("Enter project description: ")
     msg = sys.stdin.readlines()
@@ -40,6 +51,7 @@ def newEntry():
     print("Writing to files ... ")
     sleep(0.5)
 
+    chdir(store)
     if(path.exists("data.txt")):
         dataDict = getData()
     else:
@@ -60,6 +72,9 @@ parser_display.set_defaults(func=display)
 
 parser_new = subparsers.add_parser('new', help='Add new entries')
 parser_new.set_defaults(func=newEntry)
+
+parser_new = subparsers.add_parser('version', help='Display version')
+parser_new.set_defaults(func=version)
 
 #parser.add_argument("-v", "--version", help="show program version", action="store_true")
 #parser.add_argument('-n', '--new', help='Add new entries', action="store_true")
