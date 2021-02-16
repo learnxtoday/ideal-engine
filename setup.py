@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
         name="Ideal Engine",
-        version="1.0.1",
+        version="1.0.2",
         author="Parth Krishna",
         author_email="thenerdsuperuser@gmail.com",
         description="A small project management tool",
