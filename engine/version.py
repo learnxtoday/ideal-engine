@@ -1,2 +1,2 @@
 def show_version():
-    print("Version 1.0.1")
+    print("Version v0.2-alpha")
